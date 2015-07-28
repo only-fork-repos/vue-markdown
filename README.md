@@ -11,7 +11,7 @@
     <script src="//cdn.bootcss.com/vue/0.12.8/vue.js"></script>
     <script src="//cdn.bootcss.com/marked/0.3.2/marked.js"></script>
     <link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
-    <script src="../dist/vue-markdown.js"></script>
+    <script src="vue-markdown.js"></script>
 </head>
 <body>
 <div style="width: 800px;margin: auto">
