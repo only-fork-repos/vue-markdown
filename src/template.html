@@ -1,0 +1,53 @@
+<style>
+    .md-editor {
+        padding: 40px 10px 10px 10px;
+        position: relative;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+
+    .md-editor textarea {
+        border: none;
+        resize: vertical;
+        outline: none;
+        padding: 0;
+    }
+
+    .md-editor textarea {
+        width: 100%;
+    }
+
+    .md-editor .md-preview {
+        overflow-y: auto;
+    }
+
+    .md-editor .md-toolbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 32px;
+        border-bottom: 1px solid #ddd;
+        overflow-x: auto;
+    }
+
+    .md-toolbar .button {
+        line-height: 32px;
+        width: 32px;
+        text-align: center;
+        cursor: pointer;
+    }
+</style>
+<div class="md-editor" v-style="width:width">
+    <div class="md-toolbar">
+        <span class="button {{icon}}" v-repeat="buttons" title="{{title}}" v-on="click:action(type)"></span>
+        <span class="button fa" v-class="'fa-eye':previewMode,'fa-eye-slash':!previewMode"
+              v-on="click:togglePreview"></span>
+    </div>
+    <textarea v-model="text" v-el="textarea" v-show="!previewMode" v-style="height:height"></textarea>
+
+    <div class="md-preview" v-show="previewMode" v-style="height:height">{{{previewHtml}}}</div>
+</div>
+<content></content>
