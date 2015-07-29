@@ -44,10 +44,10 @@
     <div class="md-toolbar">
         <span class="button {{icon}}" v-repeat="buttons" title="{{title}}" v-on="click:action(type)"></span>
         <span class="button fa" v-class="'fa-eye':previewMode,'fa-eye-slash':!previewMode"
-              v-on="click:togglePreview"></span>
+              v-on="click:previewMode=!previewMode"></span>
     </div>
     <textarea v-model="text" v-el="textarea" v-show="!previewMode" v-style="height:height"></textarea>
 
-    <div class="md-preview" v-show="previewMode" v-style="height:height">{{{previewHtml}}}</div>
+    <div class="md-preview" v-show="previewMode">{{{previewHtml}}}</div>
 </div>
 <content></content>
