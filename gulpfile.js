@@ -12,7 +12,7 @@ var template = JSON.stringify(data)
 //头部信息
 var pkg = require('./package.json');
 var d = new Date()
-var date = d.getFullYear() + "/" + d.getMonth() + "/" + d.getDay()
+var date = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate()
 var banner = ["/**", " * Vue Markdown <%=pkg.version%>", " * <%=date%> Peak Tai"
     , " * https://github.com/PeakTai/vue-markdown.git", " */", ""].join("\n")
 
