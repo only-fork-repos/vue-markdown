@@ -1,5 +1,5 @@
 # vue-markdown
-一个十分简洁易用的[Vue](https://github.com/yyx990803/vue) Markdown编辑器，依赖[marked](https://github.com/chjj/marked)和[Font Awesome](https://github.com/FortAwesome/Font-Awesome)。
+一个[Vue](https://github.com/yyx990803/vue)的Markdown编辑器插件，十分的简洁易用，只依赖[marked](https://github.com/chjj/marked)和[Font Awesome](https://github.com/FortAwesome/Font-Awesome)。
 演示地址：[http://vue-markdown.coding.io/](http://vue-markdown.coding.io/)
 ## 浏览器中使用
 ```html
