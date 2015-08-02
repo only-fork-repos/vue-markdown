@@ -50,9 +50,9 @@
                 vm.setSelection(selection.end, selection.end)
             },
             "code": function (vm) {
-                vm.replaceSelection("``````")
+                vm.replaceSelection("``")
                 var selection = vm.getSelection()
-                vm.setSelection(selection.end - 3, selection.end - 3)
+                vm.setSelection(selection.end - 1, selection.end - 1)
             },
             "list-ol": function (vm) {
                 vm.replaceSelection("1. ")
@@ -133,7 +133,7 @@
                     },
                     //trigger by click button
                     action: function (type) {
-                        if (this.previewMode) {
+                        if (this.mode != "edit") {
                             return
                         }
                         var callback = markdown.buttonCallbacks[type]
