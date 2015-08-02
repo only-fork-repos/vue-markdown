@@ -1,7 +1,6 @@
 <style>
     .md-editor {
-        padding: 40px 10px 10px 10px;
-        position: relative;
+        padding: 0 10px 10px 10px;
         border: 1px solid #ddd;
         border-radius: 4px;
         -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
@@ -24,13 +23,10 @@
     }
 
     .md-editor .md-toolbar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 32px;
         border-bottom: 1px solid #ddd;
         overflow-x: auto;
+        margin: 0 -10px 10px -10px;
+
     }
 
     .md-toolbar .button {
@@ -39,15 +35,91 @@
         text-align: center;
         cursor: pointer;
     }
+
+    .md-help {
+        overflow-x: auto;
+    }
+
+    .md-help table {
+        border-spacing: 0;
+        border-collapse: collapse;
+        min-width: 100%;
+    }
+
+    .md-help table th, .md-help table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    .md-help table th{
+        min-width: 80px;
+    }
 </style>
 <div class="md-editor" v-style="width:width">
     <div class="md-toolbar">
         <span class="button {{icon}}" v-repeat="buttons" title="{{title}}" v-on="click:action(type)"></span>
-        <span class="button fa" v-class="'fa-eye':previewMode,'fa-eye-slash':!previewMode"
-              v-on="click:previewMode=!previewMode"></span>
+        <span class="button fa" v-class="'fa-eye':mode=='preview','fa-eye-slash':mode!='preview'"
+              v-on="click:mode = mode == 'preview'?'edit':'preview'"></span>
+        <span class="button fa fa-question-circle" v-on="click:mode = mode == 'help'?'edit':'help'"></span>
     </div>
-    <textarea v-model="text" v-el="textarea" v-show="!previewMode" v-style="height:height"></textarea>
+    <textarea v-model="text" v-el="textarea" v-show="mode=='edit'" v-style="height:height"></textarea>
 
-    <div class="md-preview" v-show="previewMode">{{{previewHtml}}}</div>
+    <div class="md-preview" v-show="mode=='preview'">{{{previewHtml}}}</div>
+    <div class="md-help" v-show="mode=='help'">
+        <h1>markdown语法说法</h1>
+        <table>
+            <tbody>
+            <tr>
+                <th><i class="fa fa-image"></i>&nbsp;图片</th>
+                <td colspan="2">![描述](图片地址)</td>
+            </tr>
+            <tr>
+                <th><i class="fa fa-link"></i>&nbsp;链接</th>
+                <td colspan="2">[描述](链接地址)</td>
+            </tr>
+            <tr>
+                <th><i class="fa fa-bold" style="margin-right: 0"></i>/<i class="fa fa-italic"></i>强调</th>
+                <td colspan="2">*斜体* 和 **粗体**</td>
+            </tr>
+            <tr>
+                <th><i class="fa fa-header"></i>&nbsp;标题</th>
+                <td colspan="2"># 一级标题 <br> ## 二级标题 <br>...<br> ##### 五级标题</td>
+            </tr>
+            <tr>
+                <th><i class="fa fa-quote-left"></i>&nbsp;引用</th>
+                <td colspan="2">&gt; 一级引用 <br> &gt;&gt; 二级引用</td>
+            </tr>
+            <tr>
+                <th><i class="fa fa-table"></i>&nbsp;列表</th>
+                <td>
+                    1. 有序列表1 <br>
+                    2. 有序列表2 <br>
+                    3. 有序列表3
+                </td>
+                <td>
+                    - 无序列表1 <br>
+                    - 无序列表2 <br>
+                    - 无序列表3
+                </td>
+            </tr>
+            <tr>
+                <th><i class="fa fa-code"></i>&nbsp;代码</th>
+                <td colspan="2"><code>`var a = 1;`</code></td>
+            </tr>
+            <tr>
+                <th><i class="fa fa-table"></i>&nbsp;表格</th>
+                <td colspan="2">
+                    <pre>First Header | Second Header | Third Header
+:----------- | :-----------: | -----------:
+ Left        |     Center    |       Right</pre>
+                    <!--<p><code>First Header | Second Header | Third Header</code></p>-->
+
+                    <!--<p><code>:-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; | :-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;: | -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;:</code></p>-->
+
+                    <!--<p><code>Left&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; | &#45;&#45;&#45;&#45;Center-&#45;&#45; | -&#45;&#45;&#45;&#45;&#45;&#45;Right</code></p>-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <content></content>

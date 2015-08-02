@@ -1,6 +1,6 @@
 {
   "name": "vue-markdown",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "maekdown editor for vuejs",
   "main": "./dist/vue-markdown.js",
   "directories": {
@@ -11,7 +11,7 @@
     "url": "https://github.com/PeakTai/vue-markdown.git"
   },
   "scripts": {
-    "build": "webpack --config build/webpack.config.js",
+    "build": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -28,6 +28,6 @@
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "marked": "^0.3.3",
-    "vue": "^0.12.8"
+    "vue": "^0.12.9"
   }
 }

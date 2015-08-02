@@ -2,7 +2,7 @@
     "user strict"
     function defaultData() {
         return {
-            previewMode: false,
+            mode: "edit",
             previewHtml: "",
             buttons: [
                 {title: "标题", type: "header", icon: "fa fa-header"},
