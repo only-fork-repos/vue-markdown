@@ -19,7 +19,11 @@
     }
 
     .md-editor .md-preview {
-        overflow-y: auto;
+        overflow: auto;
+    }
+
+    .md-editor .md-preview img {
+        max-width: 100%;
     }
 
     .md-editor .md-toolbar {
@@ -121,6 +125,9 @@
             </tr>
             </tbody>
         </table>
+    </div>
+    <div class="md-upload" v-show="mode=='upload'">
+        <input type="file" v-el="file">
     </div>
 </div>
 <content></content>
