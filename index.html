@@ -8,6 +8,9 @@
     <script src="//cdn.bootcss.com/marked/0.3.2/marked.js"></script>
     <link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <!--使用highlight的github主题-->
+    <link href="//cdn.bootcss.com/highlight.js/8.7/styles/github.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/highlight.js/8.7/highlight.min.js"></script>
     <script src="dist/vue-markdown.js"></script>
 </head>
 <body style="padding: 15px;">
@@ -16,16 +19,32 @@
     <md-editor text="{{@text}}"></md-editor>
 </div>
 <script>
-    //可以根据你的需要，对marked进行设置
+    // 可以根据你的需要，对marked进行设置，详细见marked的官方文档
+    // 下面是一个自定义解析table的例子
+    var renderer = new marked.Renderer();
+    renderer.table = function (header, body) {
+        return '<table class="table table-bordered table-striped">\n'
+                + '<thead>\n'
+                + header
+                + '</thead>\n'
+                + '<tbody>\n'
+                + body
+                + '</tbody>\n'
+                + '</table>\n';
+    }
     marked.setOptions({
-        renderer: new marked.Renderer(),
+        renderer: renderer,
         gfm: true,
         tables: true,
         breaks: false,
         pedantic: false,
         sanitize: true,
         smartLists: true,
-        smartypants: false
+        smartypants: false,
+        //这里使用了highlight对代码进行高亮显示
+        highlight: function (code) {
+            return hljs.highlightAuto(code).value;
+        }
     });
     //初始化编辑器，设置默认参数，可以使用组件时对默认值进行覆盖
     var editor = new VueMarkdown(marked, {
@@ -50,7 +69,7 @@
     new Vue({
         el: document.body,
         data: {
-            text: "# Vue Markdown Editor"
+            text: "# Vue Markdown Editor\r\n"
         }
     })
 </script>
