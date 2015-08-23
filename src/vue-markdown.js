@@ -85,6 +85,7 @@
         markdown.data.width = options.width || "100%"
         markdown.data.height = options.height || "300px"
         markdown.data.text = options.text || "# Vue Markdown Editor"
+        markdown.data.placeholder = options.placeholder || ""
 
         markdown.buttonCallbacks = defaultCallbacks();
 
@@ -107,7 +108,7 @@
         //Vue.use(instance)
         markdown.install = function (Vue) {
             Vue.component("md-editor", {
-                props: ["width", "height", "text"],
+                props: ["width", "height", "placeholder", "text"],
                 template: TEMPLATE,
                 data: function () {
                     return markdown.data

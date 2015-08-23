@@ -66,7 +66,8 @@
               v-on="click:mode = mode == 'preview'?'edit':'preview'"></span>
         <span class="button fa fa-question-circle" v-on="click:mode = mode == 'help'?'edit':'help'"></span>
     </div>
-    <textarea v-model="text" v-el="textarea" v-show="mode=='edit'" v-style="height:height"></textarea>
+    <textarea v-model="text" v-el="textarea" v-show="mode=='edit'" v-style="height:height"
+              v-attr="placeholder:placeholder"></textarea>
 
     <div class="md-preview" v-show="mode=='preview'">{{{previewHtml}}}</div>
     <div class="md-help" v-show="mode=='help'">
@@ -116,11 +117,6 @@
                     <pre>First Header | Second Header | Third Header
 :----------- | :-----------: | -----------:
  Left        |     Center    |       Right</pre>
-                    <!--<p><code>First Header | Second Header | Third Header</code></p>-->
-
-                    <!--<p><code>:-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; | :-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;: | -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;:</code></p>-->
-
-                    <!--<p><code>Left&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; | &#45;&#45;&#45;&#45;Center-&#45;&#45; | -&#45;&#45;&#45;&#45;&#45;&#45;Right</code></p>-->
                 </td>
             </tr>
             </tbody>

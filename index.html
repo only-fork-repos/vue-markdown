@@ -16,7 +16,7 @@
 <body style="padding: 15px;">
 <div style="width: 800px;max-width:100%;margin: auto">
     <!--这里覆盖了默认的text，并与父组件双向同步-->
-    <md-editor text="{{@text}}"></md-editor>
+    <md-editor text="{{@text}}" placeholder="Vue Markdown Editor"></md-editor>
 </div>
 <script>
     // 可以根据你的需要，对marked进行设置，详细见marked的官方文档
@@ -50,7 +50,7 @@
     var editor = new VueMarkdown(marked, {
         width: "100%",//宽
         height: "300px",//高
-        text: "# Vue Markdown Editor"//默认文本
+        text: null//默认文本
     });
     //对编辑器进行扩展
     //    editor.addButton({
@@ -69,7 +69,7 @@
     new Vue({
         el: document.body,
         data: {
-            text: "# Vue Markdown Editor\r\n"
+            text: ""
         }
     })
 </script>
