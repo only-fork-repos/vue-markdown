@@ -50,7 +50,14 @@
     var editor = new VueMarkdown(marked, {
         width: "100%",//宽
         height: "300px",//高
-        text: null//默认文本
+        text: null,//默认文本，
+//        upload:{
+//            server:"服务器上传地址",
+//            max:500*1024,//文件大小限制，单位字节
+//            formData:{//附加的表单属性
+//                accessToken:"xxxx"
+//            }
+//        }
     });
     //对编辑器进行扩展
     //    editor.addButton({

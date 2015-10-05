@@ -62,14 +62,15 @@
 <div class="md-editor" v-style="width:width">
     <div class="md-toolbar">
         <span class="button {{icon}}" v-repeat="buttons" title="{{title}}" v-on="click:action(type)"></span>
-        <span class="button fa" v-class="'fa-eye':mode=='preview','fa-eye-slash':mode!='preview'"
-              v-on="click:mode = mode == 'preview'?'edit':'preview'"></span>
-        <span class="button fa fa-question-circle" v-on="click:mode = mode == 'help'?'edit':'help'"></span>
+
+        <span class="button fa fa-cloud-upload" v-on="click:toggleMode('upload')" v-if="upload.server"></span>
+        <span class="button fa fa-eye" v-on="click:toggleMode('preview')"></span>
+        <span class="button fa fa-question-circle" v-on="click:toggleMode('help')"></span>
     </div>
     <textarea v-model="text" v-el="textarea" v-show="mode=='edit'" v-style="height:height"
               v-attr="placeholder:placeholder"></textarea>
 
-    <div class="md-preview" v-show="mode=='preview'">{{{previewHtml}}}</div>
+    <div class="md-preview" v-show="mode=='preview'" v-style="min-height:height">{{{previewHtml}}}</div>
     <div class="md-help" v-show="mode=='help'">
         <h1>markdown语法说明</h1>
         <table>
@@ -122,8 +123,7 @@
             </tbody>
         </table>
     </div>
-    <div class="md-upload" v-show="mode=='upload'">
-        <input type="file" v-el="file">
+    <div class="md-upload" v-if="upload.server" v-show="mode=='upload'" v-style="min-height:height">
+        <uploader server="{{upload.server}}" max="{{upload.max||500*1024}}" form-data="{{upload.formData}}"/>
     </div>
 </div>
-<content></content>
